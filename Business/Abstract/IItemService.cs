@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    interface IItemService
+    public interface IItemService
     {
 		IResult Add(Item item);
 
 		IResult Delete(int id);
 
-		IDataResult<List<Item>> GetCategory1Id(int cat1Id, int pageNo, int pageSize);
+		//IDataResult<List<Item>> GetCategory1Id(int cat1Id, int pageNo, int pageSize);
 
 		IDataResult<Item> GetById(int id);
 
@@ -20,6 +20,6 @@ namespace Business.Abstract
 
 		IDataResult<List<Item>> GetByItemName(String itemName);
 
-		IDataResult<List<Item>> GetByItemNamePageable(String itemName, int pageNo, int pageSize);
+		//IDataResult<List<Item>> GetByItemNamePageable(String itemName, int pageNo, int pageSize);
 	}
 }
