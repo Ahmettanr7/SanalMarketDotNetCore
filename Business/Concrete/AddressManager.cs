@@ -19,7 +19,8 @@ namespace Business.Concrete
         }
         public IResult Add(Address address)
         {
-            throw new NotImplementedException();
+            _addressDal.Add(address);
+            return new SuccessResult("Adres ekleme işlemi başarılı");
         }
 
         public IDataResult<List<Address>> GetAll()

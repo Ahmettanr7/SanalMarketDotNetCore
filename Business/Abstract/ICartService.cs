@@ -20,7 +20,7 @@ namespace Business.Abstract
 
 		IDataResult<List<Cart>> GetAllByUserId(int userId);
 
-		IDataResult<List<CartDto>> GetByUserIdTotalCartPrice(int userId);
+		IDataResult<CartDto> GetByUserIdTotalCartPrice(int userId);
 
 		IDataResult<List<Cart>> GetAllByUserIdAndCartStatusIsTrue(int userId);
 	}

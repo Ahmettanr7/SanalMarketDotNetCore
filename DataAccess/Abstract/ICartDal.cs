@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface ICartDal : IEntityRepository<Cart>
     {
-        List<CartDto> getByUserIdTotalCartPrice(Expression<Func<CartDto, bool>> filter = null);
+        CartDto getByUserIdTotalCartPrice(Expression<Func<CartDto, bool>> filter = null);
     }
 }

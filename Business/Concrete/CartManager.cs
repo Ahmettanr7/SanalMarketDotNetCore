@@ -42,17 +42,33 @@ namespace Business.Concrete
 
         public IResult DecreaseAd(int userId, int itemId)
         {
-            throw new NotImplementedException();
+            var item = _cartDal.Get(c => c.UserId == userId && c.ItemId == itemId && c.CartStatus == true);
+            var newCount = item.Count - 1;
+            var unitPrice = _itemDal.Get(i => i.Id == itemId).UnitPrice;
+
+            item.Count = newCount;
+            item.LineTotal = newCount * unitPrice;
+            _cartDal.Update(item);
+            return new SuccessResult("Miktar güncellendi");
         }
 
         public IResult DecreaseKg(int userId, int itemId)
         {
-            throw new NotImplementedException();
+            var item = _cartDal.Get(c => c.UserId == userId && c.ItemId == itemId && c.CartStatus == true);
+            var newCount = item.Count - 0.5;
+            var unitPrice = _itemDal.Get(i => i.Id == itemId).UnitPrice;
+
+            item.Count = newCount;
+            item.LineTotal = newCount * unitPrice;
+            _cartDal.Update(item);
+            return new SuccessResult("Miktar güncellendi");
         }
 
         public IResult Delete(int id)
         {
-            throw new NotImplementedException();
+            Cart cart = _cartDal.Get(c => c.Id == id);
+            _cartDal.Delete(cart);
+            return new SuccessResult("Sepetten çıkarma işlemi başarılı");
         }
 
         public IDataResult<List<Cart>> GetAllByUserId(int userId)
@@ -65,19 +81,33 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Cart>>(_cartDal.GetAll(c => c.UserId == userId && c.CartStatus == true ), "Kullanıcı numarasına göre aktif ürünler getirildi");
         }
 
-        public IDataResult<List<CartDto>> GetByUserIdTotalCartPrice(int userId)
+        public IDataResult<CartDto> GetByUserIdTotalCartPrice(int userId)
         {
-            return new SuccessDataResult<List<CartDto>>(_cartDal.getByUserIdTotalCartPrice(dto => dto.UserId == userId));
+            return new SuccessDataResult<CartDto>(_cartDal.getByUserIdTotalCartPrice(dto => dto.UserId == userId));
         }
 
         public IResult IncreaseAd(int userId, int itemId)
         {
-            throw new NotImplementedException();
+            var item = _cartDal.Get(c => c.UserId == userId && c.ItemId == itemId && c.CartStatus == true);
+            var newCount = item.Count + 1;
+            var unitPrice = _itemDal.Get(i => i.Id == itemId).UnitPrice;
+
+            item.Count = newCount;
+            item.LineTotal = newCount * unitPrice;
+            _cartDal.Update(item);
+            return new SuccessResult("Miktar güncellendi");
         }
 
         public IResult IncreaseKg(int userId, int itemId)
         {
-            throw new NotImplementedException();
+            var item = _cartDal.Get(c => c.UserId == userId && c.ItemId == itemId && c.CartStatus == true);
+            var newCount = item.Count + 0.5;
+            var unitPrice = _itemDal.Get(i => i.Id == itemId).UnitPrice;
+
+            item.Count = newCount;
+            item.LineTotal = newCount * unitPrice;
+            _cartDal.Update(item);
+            return new SuccessResult("Miktar güncellendi");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _cartService = cartService;
         }
 
-        [HttpGet("get")]
+        [HttpGet("getallbyuserid")]
 
         public IActionResult GetAllByUserId(int userId)
         {
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
 
         }
         
-        [HttpGet("getactive")]
+        [HttpGet("getallbyuseridandcartstatusistrue")]
 
         public IActionResult GetAllByUserIdAndCartStatusIsTrue(int userId)
         {
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("gettotalprice")]
+        [HttpGet("getbyuseridtotalcartprice")]
 
         public IActionResult GetByUserIdTotalCartPrice(int userId)
         {
@@ -62,6 +62,61 @@ namespace WebAPI.Controllers
         public IActionResult Add(Cart cart)
         {
             var result = _cartService.Add(cart);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("decreasead")]
+        public IActionResult DecreaseAd(int userId, int itemId)
+        {
+            var result = _cartService.DecreaseAd(userId, itemId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("decreasekg")]
+        public IActionResult DecreaseKg(int userId, int itemId)
+        {
+            var result = _cartService.DecreaseKg(userId, itemId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("increasead")]
+        public IActionResult IncreaseAd(int userId, int itemId)
+        {
+            var result = _cartService.IncreaseAd(userId, itemId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("increasekg")]
+        public IActionResult IncreaseKg(int userId, int itemId)
+        {
+            var result = _cartService.IncreaseKg(userId, itemId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(int id)
+        {
+            var result = _cartService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);
