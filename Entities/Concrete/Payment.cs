@@ -10,7 +10,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public int OrderId { get; set; }
         public DateTime Date_ { get; set; }
-        public bool IsOk { get; set; }
+        public Boolean IsOk { get; set; }
         public String AppropveCode { get; set; }
         public decimal PaymentTotal { get; set; }
     }

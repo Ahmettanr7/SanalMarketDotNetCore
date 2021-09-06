@@ -12,6 +12,6 @@ namespace Entities.Concrete
         public DateTime Date_ { get; set; }
         public decimal TotalPrice { get; set; }
         public int AddressId { get; set; }
-        public bool IsDelivered { get; set; }
+        public Boolean IsDelivered { get; set; }
     }
 }

@@ -10,9 +10,10 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public double Count { get; set; }
         public int ItemId { get; set; }
+
+        public double UnitPrice { get; set; }
         public int UserId { get; set; }
         public bool CartStatus { get; set; }
         public double LineTotal { get; set; }
-        public double TotalCartPrice { get; set; }
     }
 }

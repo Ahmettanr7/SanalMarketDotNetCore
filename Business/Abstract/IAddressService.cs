@@ -8,10 +8,10 @@ namespace Business.Abstract
 {
     public interface IAddressService
     {
-        IResult add(Address address);
+        IResult Add(Address address);
 
-        IDataResult<List<Address>> getAllByUserId(int userId);
+        IDataResult<List<Address>> GetAllByUserId(int userId);
 
-        IDataResult<List<Address>> getAll();
+        IDataResult<List<Address>> GetAll();
     }
 }
