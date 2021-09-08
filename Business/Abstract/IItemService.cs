@@ -12,14 +12,14 @@ namespace Business.Abstract
 
 		IResult Delete(int id);
 
-		//IDataResult<List<Item>> GetCategory1Id(int cat1Id, int pageNo, int pageSize);
+        IDataResult<List<Item>> GetCategory1Id(int cat1Id, int pageNo, int pageSize);
 
-		IDataResult<Item> GetById(int id);
+        IDataResult<Item> GetById(int id);
 
 		IDataResult<List<Item>> GetAllCategory1Id(int cat1Id);
 
 		IDataResult<List<Item>> GetByItemName(String itemName);
 
-		//IDataResult<List<Item>> GetByItemNamePageable(String itemName, int pageNo, int pageSize);
-	}
+        IDataResult<List<Item>> GetByItemNamePageable(String itemName, int pageNo, int pageSize);
+    }
 }

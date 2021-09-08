@@ -11,66 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class OrdersController : ControllerBase
     {
-        IItemService _itemService;
+        IOrderService _orderService;
 
-        public ItemsController(IItemService itemService)
+        public OrdersController(IOrderService orderService)
         {
-            _itemService = itemService;
+            _orderService = orderService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Item item)
+        public IActionResult Add(Order order)
         {
-            var result = _itemService.Add(item);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpPost("delete")]
-        public IActionResult Delete(int id)
-        {
-            var result = _itemService.Delete(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyitemname")]
-
-        public IActionResult GetByItemName(String itemName)
-        {
-            var result = _itemService.GetByItemName(itemName);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyitemnamepageable")]
-
-        public IActionResult GetByItemNamePageable(string itemName, int pageNo, int pageSize)
-        {
-            var result = _itemService.GetByItemNamePageable(itemName, pageNo, pageSize);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getcategory1id")]
-
-        public IActionResult GetCategory1Id(int cat1Id, int pageNo, int pageSize)
-        {
-            var result = _itemService.GetCategory1Id(cat1Id, pageNo, pageSize);
+            var result = _orderService.Add(order);
             if (result.Success)
             {
                 return Ok(result);
@@ -82,12 +35,60 @@ namespace WebAPI.Controllers
 
         public IActionResult GetById(int id)
         {
-            var result = _itemService.GetById(id);
+            var result = _orderService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getbyisdeliveredisfalse")]
+
+        public IActionResult GetByIsDeliveredIsFalse()
+        {
+            var result = _orderService.GetByIsDeliveredIsFalse();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyisdeliveredistrue")]
+
+        public IActionResult GetByIsDeliveredIsTrue()
+        {
+            var result = _orderService.GetByIsDeliveredIsTrue();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyuserid")]
+
+        public IActionResult GetByUserId(int userId)
+        {
+            var result = _orderService.GetByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("wasdelivered")]
+        public IActionResult WasDelivered(int id)
+        {
+            var result = _orderService.WasDelivered(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }
