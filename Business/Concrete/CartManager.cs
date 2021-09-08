@@ -76,9 +76,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Cart>>(_cartDal.GetAll(c => c.UserId == userId));
         }
 
-        public IDataResult<List<Cart>> GetAllByUserIdAndCartStatusIsTrue(int userId)
+        public IDataResult<List<CartWithItemDto>> GetAllByUserIdAndCartStatusIsTrue(int userId)
         {
-            return new SuccessDataResult<List<Cart>>(_cartDal.GetAll(c => c.UserId == userId && c.CartStatus == true ), "Kullanıcı numarasına göre aktif ürünler getirildi");
+            return new SuccessDataResult<List<CartWithItemDto>>(_cartDal.GetAllByUserIdAndCartStatusTrueCartWithItemDto(c => c.UserId == userId && c.CartStatus == true ), "Kullanıcı numarasına göre aktif ürünler getirildi");
         }
 
         public IDataResult<CartDto> GetByUserIdTotalCartPrice(int userId)

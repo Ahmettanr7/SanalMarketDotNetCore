@@ -37,7 +37,7 @@ namespace Business.Concrete
             foreach (var item in cartItems)
             {
                 OrderDetail orderDetail = new OrderDetail();
-                orderDetail.ItemId = item.Id;
+                orderDetail.ItemId = item.ItemId;
                 orderDetail.OrderId = order.Id;
                 orderDetail.Count = item.Count;
                 _orderDetailDal.Add(orderDetail);

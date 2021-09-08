@@ -11,11 +11,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Category1sController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         ICategory1Service _categoryService;
 
-        public Category1sController(ICategory1Service categoryService)
+        public CategoriesController(ICategory1Service categoryService)
         {
             _categoryService = categoryService;
         }

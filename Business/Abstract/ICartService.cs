@@ -22,6 +22,6 @@ namespace Business.Abstract
 
 		IDataResult<CartDto> GetByUserIdTotalCartPrice(int userId);
 
-		IDataResult<List<Cart>> GetAllByUserIdAndCartStatusIsTrue(int userId);
+		IDataResult<List<CartWithItemDto>> GetAllByUserIdAndCartStatusIsTrue(int userId);
 	}
 }
