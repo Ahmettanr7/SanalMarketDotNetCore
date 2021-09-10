@@ -2,9 +2,12 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace Business.Concrete
 {
@@ -16,9 +19,30 @@ namespace Business.Concrete
         {
             _orderDetailDal = orderDetailDal;
         }
-        public IDataResult<List<OrderDetail>> GetByOrderId(int orderId)
+
+        public IDataResult<OrderDetailDto> GetById(int id)
         {
-            return new SuccessDataResult<List<OrderDetail>>(_orderDetailDal.GetAll(od => od.OrderId == orderId));
+            return new SuccessDataResult<OrderDetailDto>(_orderDetailDal.GetDTO(dto => dto.Id == id));
+        }
+
+        public IDataResult<List<DeliveredDto>> GetByIsDeliveredIsFalse()
+        {
+            return new SuccessDataResult<List<DeliveredDto>>(_orderDetailDal.GetAllDeliveredDTO(dto => dto.IsDelivered == false));
+        }
+
+        public IDataResult<List<DeliveredDto>> GetByIsDeliveredIsTrue()
+        {
+            return new SuccessDataResult<List<DeliveredDto>>(_orderDetailDal.GetAllDeliveredDTO(dto => dto.IsDelivered == true));
+        }
+
+        public IDataResult<List<OrderDetailDto>> GetByOrderId(int orderId)
+        {
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDetailDal.GetAllDTO(dto => dto.OrderId == orderId));
+        }
+
+        public IDataResult<List<OrderDetailDto>> GetByUserId(int userId)
+        {
+            return new SuccessDataResult<List<OrderDetailDto>>(_orderDetailDal.GetAllDTO(dto => dto.UserId == userId));
         }
     }
 }

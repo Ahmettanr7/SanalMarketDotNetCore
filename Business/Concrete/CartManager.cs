@@ -76,14 +76,19 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Cart>>(_cartDal.GetAll(c => c.UserId == userId));
         }
 
+        public IDataResult<List<CartWithItemDto>> GetAllByUserIdAndCartStatusIsFalse(int userId)
+        {
+            return new SuccessDataResult<List<CartWithItemDto>>(_cartDal.GetAllByUserIdCartWithItemDto(c => c.UserId == userId && c.CartStatus == false), "Kullanıcı numarasına göre aktif ürünler getirildi");
+        }
+
         public IDataResult<List<CartWithItemDto>> GetAllByUserIdAndCartStatusIsTrue(int userId)
         {
-            return new SuccessDataResult<List<CartWithItemDto>>(_cartDal.GetAllByUserIdAndCartStatusTrueCartWithItemDto(c => c.UserId == userId && c.CartStatus == true ), "Kullanıcı numarasına göre aktif ürünler getirildi");
+            return new SuccessDataResult<List<CartWithItemDto>>(_cartDal.GetAllByUserIdCartWithItemDto(c => c.UserId == userId && c.CartStatus == true ), "Kullanıcı numarasına göre aktif ürünler getirildi");
         }
 
         public IDataResult<CartDto> GetByUserIdTotalCartPrice(int userId)
         {
-            return new SuccessDataResult<CartDto>(_cartDal.getByUserIdTotalCartPrice(dto => dto.UserId == userId));
+            return new SuccessDataResult<CartDto>(_cartDal.getByUserIdTotalCartPrice(c => c.UserId == userId));
         }
 
         public IResult IncreaseAd(int userId, int itemId)

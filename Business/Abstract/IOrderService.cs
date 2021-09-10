@@ -11,13 +11,5 @@ namespace Business.Abstract
 		IResult Add(Order order);
 
 		IResult WasDelivered(int id);
-
-		IDataResult<Order> GetById(int id);
-
-		IDataResult<List<Order>> GetByUserId(int userId);
-
-		IDataResult<List<Order>> GetByIsDeliveredIsTrue();
-
-		IDataResult<List<Order>> GetByIsDeliveredIsFalse();
 	}
 }

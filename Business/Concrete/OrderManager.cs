@@ -47,29 +47,8 @@ namespace Business.Concrete
                 item.CartStatus = false;
                 _cartDal.Update(item);
             }
-
             return new SuccessResult("Siparişiniz alındı.");
 
-        }
-
-        public IDataResult<Order> GetById(int id)
-        {
-            return new SuccessDataResult<Order>(_orderDal.Get(o => o.Id == id));
-        }
-
-        public IDataResult<List<Order>> GetByIsDeliveredIsFalse()
-        {
-            return new SuccessDataResult<List<Order>>(_orderDal.GetAll(o => o.IsDelivered == false));
-        }
-
-        public IDataResult<List<Order>> GetByIsDeliveredIsTrue()
-        {
-            return new SuccessDataResult<List<Order>>(_orderDal.GetAll(o => o.IsDelivered == true));
-        }
-
-        public IDataResult<List<Order>> GetByUserId(int userId)
-        {
-            return new SuccessDataResult<List<Order>>(_orderDal.GetAll(o => o.UserId == userId));
         }
 
         public IResult WasDelivered(int id)

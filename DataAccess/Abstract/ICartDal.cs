@@ -12,7 +12,7 @@ namespace DataAccess.Abstract
     {
         CartDto getByUserIdTotalCartPrice(Expression<Func<CartDto, bool>> filter = null);
 
-        List<CartWithItemDto> GetAllByUserIdAndCartStatusTrueCartWithItemDto(Expression<Func<CartWithItemDto, bool>> filter = null);
+        List<CartWithItemDto> GetAllByUserIdCartWithItemDto(Expression<Func<CartWithItemDto, bool>> filter = null);
     }
 }
 

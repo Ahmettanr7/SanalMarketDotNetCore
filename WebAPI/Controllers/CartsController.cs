@@ -45,6 +45,18 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallbyuseridandcartstatusisfalse")]
+
+        public IActionResult GetAllByUserIdAndCartStatusIsFalse(int userId)
+        {
+            var result = _cartService.GetAllByUserIdAndCartStatusIsFalse(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyuseridtotalcartprice")]
 
         public IActionResult GetByUserIdTotalCartPrice(int userId)

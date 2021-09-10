@@ -19,10 +19,54 @@ namespace WebAPI.Controllers
             _orderDetailService = orderDetailService;
         }
 
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _orderDetailService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyisdeliveredisfalse")]
+        public IActionResult GetByIsDeliveredIsFalse()
+        {
+            var result = _orderDetailService.GetByIsDeliveredIsFalse();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyisdeliveredistrue")]
+        public IActionResult GetByIsDeliveredIsTrue()
+        {
+            var result = _orderDetailService.GetByIsDeliveredIsTrue();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyorderid")]
         public IActionResult GetByOrderId(int orderId)
         {
             var result = _orderDetailService.GetByOrderId(orderId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyuserid")]
+        public IActionResult GetByUserId(int userId)
+        {
+            var result = _orderDetailService.GetByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);

@@ -31,54 +31,6 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-
-        public IActionResult GetById(int id)
-        {
-            var result = _orderService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyisdeliveredisfalse")]
-
-        public IActionResult GetByIsDeliveredIsFalse()
-        {
-            var result = _orderService.GetByIsDeliveredIsFalse();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyisdeliveredistrue")]
-
-        public IActionResult GetByIsDeliveredIsTrue()
-        {
-            var result = _orderService.GetByIsDeliveredIsTrue();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyuserid")]
-
-        public IActionResult GetByUserId(int userId)
-        {
-            var result = _orderService.GetByUserId(userId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
         [HttpPost("wasdelivered")]
         public IActionResult WasDelivered(int id)
         {

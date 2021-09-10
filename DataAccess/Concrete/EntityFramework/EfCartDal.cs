@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCartDal : EfEntityRepositoryBase<Cart, ETRADE4Context>, ICartDal
     {
-        public List<CartWithItemDto> GetAllByUserIdAndCartStatusTrueCartWithItemDto(Expression<Func<CartWithItemDto, bool>> filter = null)
+        public List<CartWithItemDto> GetAllByUserIdCartWithItemDto(Expression<Func<CartWithItemDto, bool>> filter = null)
         {
             using (ETRADE4Context context = new ETRADE4Context())
             {
@@ -57,9 +57,9 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  UserId = c.UserId,
                                  TotalCartPrice =
-                                 context.Carts.Where(ca => ca.UserId == c.UserId && c.CartStatus == true).Sum(t => t.LineTotal)
+                                 context.Carts.Where(ca => ca.UserId == c.UserId && ca.CartStatus == true).Sum(t => t.LineTotal)
                              };
-                return filter == null ? result.FirstOrDefault() : result.Where(filter).FirstOrDefault();
+                return filter == null ? result.FirstOrDefault() : result.FirstOrDefault(filter);
             }
         }
     }
