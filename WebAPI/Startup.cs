@@ -62,7 +62,7 @@ namespace WebAPI
 
             app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader());
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 

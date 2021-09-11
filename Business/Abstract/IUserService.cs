@@ -8,6 +8,8 @@ namespace Business.Abstract
     {
         List<OperationClaim> GetClaims(User user);
         User GetByMail(string email);
+
+        IDataResult<User> GetByEmailUI(string email);
         IResult Add(User user);
         IResult EditProfil(User user, string password);
         IResult Delete(User user);
