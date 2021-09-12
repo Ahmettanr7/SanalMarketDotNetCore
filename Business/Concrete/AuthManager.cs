@@ -23,7 +23,7 @@ namespace Business.Concrete
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
-            byte[] passwordHash, passwordSalt;
+            Byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
             var user = new User
             {
@@ -40,18 +40,18 @@ namespace Business.Concrete
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            var userToCheck = _userService.GetByMail(userForLoginDto.Email);
+            var userToCheck = _userService.GetByEmailUI(userForLoginDto.Email);
             if (userToCheck == null)
             {
                 return new ErrorDataResult<User>("Kullanıcı bulunamadı");
             }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
             {
                 return new ErrorDataResult<User>("Şifre hatalı");
             }
 
-            return new SuccessDataResult<User>(userToCheck, "Giriş başarılı");
+            return new SuccessDataResult<User>(userToCheck.Data, "Giriş başarılı");
         }
 
         public IResult UserExists(string email)
