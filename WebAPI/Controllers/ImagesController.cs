@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using CloudinaryDotNet.Actions;
+using Core.Utilities.Cloudinaryy;
 using Core.Utilities.Results;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +17,12 @@ namespace WebAPI.Controllers
     public class ImagesController : ControllerBase
     {
         IImageService _imageService;
+        CloudinaryService _cloudinaryService;
 
-        public ImagesController(IImageService imageService)
+        public ImagesController(IImageService imageService, CloudinaryService cloudinaryService)
         {
             _imageService = imageService;
+            _cloudinaryService = cloudinaryService;
         }
 
         [HttpGet("getbyitemid")]
@@ -40,6 +44,29 @@ namespace WebAPI.Controllers
                 return BadRequest("Boş resim gönderemezsin");
             }
             IResult result = _imageService.Add(itemId, file);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("upload")]
+        public IActionResult Upload([FromForm] ImagePath image, ImageUploadParams file)
+        {
+            if (file == null)
+            {
+                return BadRequest("Boş resim gönderemezsin");
+            }
+
+            var uploadResult = _cloudinaryService.Upload(file);
+            //ImagePath image = new ImagePath();
+            image.Name = (String)uploadResult.OriginalFilename;
+            image.ImageUrl = (String)uploadResult.Url.ToString();
+            image.ImageId = (String)uploadResult.PublicId;
+            //image.ItemId = itemId;
+
+          IResult result =  _imageService.Upload(image);
             if (result.Success)
             {
                 return Ok(result);
