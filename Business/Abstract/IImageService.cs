@@ -9,7 +9,7 @@ namespace Business.Abstract
 {
     public interface IImageService
     {
-        IResult Add(ImagePath image, IFormFile file);
+        IResult Add(int itemId, IFormFile file);
 
         IDataResult<List<ImagePath>> GetByItemId(int itemId);
     }

@@ -20,11 +20,13 @@ namespace Business.Concrete
             _imageDal = imageDal;
             _itemDal = itemDal;
         }
-        public IResult Add(ImagePath image, IFormFile file)
+        public IResult Add(int itemId, IFormFile file)
         {
+            ImagePath image = new ImagePath();
             DateTime now = DateTime.Now;
             image.DateOfCreation = now;
             image.ImageUrl = FileHelper.Add(file);
+            image.ItemId = itemId;
             _imageDal.Add(image);
             Item item = _itemDal.Get(i => i.Id == image.ItemId);
             item.ImageUrl = image.ImageUrl;

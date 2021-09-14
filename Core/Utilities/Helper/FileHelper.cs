@@ -7,8 +7,11 @@ namespace Core.Utilities.FileManager
 {
     public class FileHelper
     {
-        static string directory = Directory.GetCurrentDirectory() + @"\wwwroot\";
+        static string directory = @"C:\VsCode\sanal-market-dotnetcore-frontend\src\assets\";
         static string path = @"Images\";
+        static string UIpath = "../../assets/Images/";
+
+
 
         public static string Add(IFormFile file)
         {
@@ -23,7 +26,7 @@ namespace Core.Utilities.FileManager
                 file.CopyTo(fileStream);
                 fileStream.Flush();
             }
-            return (path + newFileName).Replace("\\", "/");
+            return (newFileName).Replace("\\", "/");
         }
 
         public static string Update(IFormFile file, string oldImagePath)

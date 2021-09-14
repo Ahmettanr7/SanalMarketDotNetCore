@@ -33,13 +33,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add([FromForm] ImagePath image, [FromForm] IFormFile file)
+        public IActionResult Add(int itemId, [FromForm] IFormFile file)
         {
             if (file == null)
             {
                 return BadRequest("Boş resim gönderemezsin");
             }
-            IResult result = _imageService.Add(image, file);
+            IResult result = _imageService.Add(itemId, file);
             if (result.Success)
             {
                 return Ok(result);

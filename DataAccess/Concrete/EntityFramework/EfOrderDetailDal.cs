@@ -41,7 +41,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  TotalPrice = o.TotalPrice,
                                  TownId = a.TownId
                              };
-                return filter == null ? result.Distinct().ToList() : result.Where(filter).Distinct().ToList();
+                return filter == null ? result.Distinct().ToList() : result.Where(filter).Distinct().OrderByDescending(o => o.OrderId).ToList();
             }
         }
 
@@ -89,7 +89,7 @@ namespace DataAccess.Concrete.EntityFramework
 
 
                              };
-                return filter == null ? result.ToList() : result.Where(filter).ToList();
+                return filter == null ? result.ToList() : result.Where(filter).OrderByDescending(o => o.OrderId).ToList();
             }
     }
         public OrderDetailDto GetDTO(Expression<Func<OrderDetailDto, bool>> filter = null)
