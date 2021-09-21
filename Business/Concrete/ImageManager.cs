@@ -23,19 +23,6 @@ namespace Business.Concrete
             _imageDal = imageDal;
             _itemDal = itemDal;
         }
-        public IResult Add(int itemId, IFormFile file)
-        {
-            ImagePath image = new ImagePath();
-            DateTime now = DateTime.Now;
-            image.DateOfCreation = now;
-            image.ImageUrl = FileHelper.Add(file);
-            image.ItemId = itemId;
-            _imageDal.Add(image);
-            Item item = _itemDal.Get(i => i.Id == image.ItemId);
-            item.ImageUrl = image.ImageUrl;
-            _itemDal.Update(item);
-            return new SuccessResult("Başarıyla eklendi");
-        }
 
         public IResult Upload(ImagePath image)
         {
@@ -46,7 +33,7 @@ namespace Business.Concrete
             Item item = _itemDal.Get(i => i.Id == image.ItemId);
             item.ImageUrl = image.ImageUrl;
             _itemDal.Update(item);
-            return new SuccessResult("Başarıyla eklendi");
+            return new SuccessResult("Resim Ekleme İşlemi Başarılı");
         }
 
         public IDataResult<List<ImagePath>> GetByItemId(int itemId)

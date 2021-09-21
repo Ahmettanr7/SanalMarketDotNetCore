@@ -52,6 +52,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getorderhistorybyuserid")]
+        public IActionResult GetOrderHistoryByUserId(int userId)
+        {
+            var result = _orderDetailService.GetOrderHistoryByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getbyorderid")]
         public IActionResult GetByOrderId(int orderId)
         {

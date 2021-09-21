@@ -44,5 +44,11 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<OrderDetailDto>>(_orderDetailDal.GetAllDTO(dto => dto.UserId == userId));
         }
+
+        public IDataResult<List<DeliveredDto>> GetOrderHistoryByUserId(int userId)
+        {
+            return new SuccessDataResult<List<DeliveredDto>>(_orderDetailDal.GetAllDeliveredDTO(dto => dto.UserId==userId && dto.IsDelivered == true));
+        }
     }
-}
+    }
+

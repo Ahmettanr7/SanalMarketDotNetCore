@@ -24,13 +24,11 @@ namespace Core.Utilities.Cloudinaryy
             cloudinary.Api.Secure = true;
         }
 
-        public ImageUploadResult Upload(ImageUploadParams file)
+        public ImageUploadResult Upload(IFormFile file)
         {
             var uploadParams = new ImageUploadParams
             {
-                File = new FileDescription(file.File.FileName,file.File.FilePath),
-                //transformation code here
-                Transformation = new Transformation().Width(200).Height(200).Crop("thumb").Gravity("face")
+                File = new FileDescription(file.FileName,file.OpenReadStream()),
             };
 
             var uploadResult = cloudinary.Upload(uploadParams);

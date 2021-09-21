@@ -10,7 +10,6 @@ namespace Business.Abstract
 {
     public interface IImageService
     {
-        IResult Add(int itemId, IFormFile file);
 
 
         IResult Upload(ImagePath image);

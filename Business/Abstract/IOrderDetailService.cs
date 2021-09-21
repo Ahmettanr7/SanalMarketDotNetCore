@@ -18,5 +18,7 @@ namespace Business.Abstract
         IDataResult<List<DeliveredDto>> GetByIsDeliveredIsTrue();
 
         IDataResult<List<DeliveredDto>> GetByIsDeliveredIsFalse();
+
+        IDataResult<List<DeliveredDto>> GetOrderHistoryByUserId(int userId);
     }
 }

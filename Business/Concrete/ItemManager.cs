@@ -22,7 +22,7 @@ namespace Business.Concrete
         public IResult Add(Item item)
         {
             _itemDal.Add(item);
-            return new SuccessResult("Ürün Ekleme İşlemi Başarılı" + "  Ürün ID : " + item.Id);
+            return new SuccessResult(item.Id.ToString());
         }
 
         public IResult Delete(int id)

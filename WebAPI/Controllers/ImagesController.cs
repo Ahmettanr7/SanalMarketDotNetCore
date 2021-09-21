@@ -36,35 +36,19 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(int itemId, [FromForm] IFormFile file)
-        {
-            if (file == null)
-            {
-                return BadRequest("Boş resim gönderemezsin");
-            }
-            IResult result = _imageService.Add(itemId, file);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
         [HttpPost("upload")]
-        public IActionResult Upload([FromForm] ImagePath image, ImageUploadParams file)
+        public IActionResult Upload(int itemId,[FromForm] IFormFile file)
         {
             if (file == null)
             {
                 return BadRequest("Boş resim gönderemezsin");
             }
-
+            ImagePath image = new ImagePath();
             var uploadResult = _cloudinaryService.Upload(file);
-            //ImagePath image = new ImagePath();
+            image.ItemId = itemId;
             image.Name = (String)uploadResult.OriginalFilename;
             image.ImageUrl = (String)uploadResult.Url.ToString();
             image.ImageId = (String)uploadResult.PublicId;
-            //image.ItemId = itemId;
 
           IResult result =  _imageService.Upload(image);
             if (result.Success)
